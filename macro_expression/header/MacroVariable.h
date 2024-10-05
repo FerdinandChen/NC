@@ -8,7 +8,8 @@
 #include <utility>
 #include "ControllerParameter.h"
 
-#define NULL_VARIABLE DBL_MIN //空變數值
+//空變數值
+constexpr double NULL_VARIABLE = DBL_MIN;
 
 //變數群
 class Variable {
