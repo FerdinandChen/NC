@@ -1,33 +1,35 @@
-# �ƭȱ�������M��
+# 數值控制相關專案
 
-## macro_expression: �����⦡�ѪR�ΰ���
+## macro_expression: 巨集算式解析及執行
 
-�ɮ׻���
+此專案僅能夠解析並執行純巨集算式，不包含NC程式碼或巨集混合NC程式碼
+
+檔案說明
 
 MacroVariable.h/cpp :
 
-�w�q�����ܼơA�]�t�����ܼ�(#1-#33)�B�@���ܼ�(#100-#999)�H�Ψt���ܼ�(#3000�H�W)
+定義巨集變數，包含局部變數(#1-#33)、共用變數(#100-#999)以及系統變數(#3000以上)
 
 MacroOperator.h/cpp :
 
-�w�q�����B��l�A�]�t��N�B��l�B���Y�B��l�B�޿�B��l�B���󦡹B��l���X�j��
+定義巨集運算子，包含算術運算子、關係運算子、邏輯運算子、條件式運算子等幾大類
 
 MacroParser.h/cpp :
 
-������`��R���A�ѪR�����r��ò��ͥ����B��l�y�k��A�ѥΤ�X���楨���B��
+巨集單節剖析器，解析巨集字串並產生巨集運算子語法樹，供用戶碼執行巨集運算
 
-ControllerParameter.h/cpp : ����Ѽ�
+ControllerParameter.h/cpp : 控制器參數
 
-CoordinateSystem.h/cpp : ���Шt�w�q
+CoordinateSystem.h/cpp : 座標系定義
 
-NC_NumberDefinition.h/cpp : ��ơB�B�I�Ƥ��Ȱ�d��w�q
+NC_NumberDefinition.h/cpp : 整數、浮點數之值域範圍定義
 
-StringConverter.h/cpp : �r��P��ơB�B�I�Ƥ����V�ഫ��
+StringConverter.h/cpp : 字串與整數、浮點數之雙向轉換器
 
-## UnitTest: �����M�ת��椸����
+## UnitTest: 對應專案的單元測試
 
-�ϥ�VS���ت�MS Test�ج[�i��{���X���աA�Hnamespace�����D�n��j���H�Ω��U���B��l���մ���
+使用Visual Studio內建的MS Test框架進行程式碼測試，以namespace分為主要兩大類以及底下的運算子分組測試
 
-namespace MacroOperators: �����إߦU�عB��l�öi��ֺ����
+namespace MacroOperators: 直接建立各種運算子並進行核算測試
 
-namespace MacroExpressions: �泌���y�k��`�r��i��ѪR�B���ͥ����B��l�c���������B�⦡�A�îֺ�䵲�G�O�_���T
+namespace MacroExpressions: 對巨集語法單節字串進行解析、產生巨集運算子構成的巨集運算式，並核算其結果是否正確
