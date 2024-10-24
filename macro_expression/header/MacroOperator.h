@@ -72,6 +72,7 @@ public:
 	//查詢運算子ID
 	MacroOperatorID GetOperatorID() const {
 		return operator_ID; }
+	//核算運算子
 	virtual double Evaluate() = 0;
 
 protected:
@@ -180,11 +181,11 @@ class ConstantOperator:public UnaryOperator {
 public:
 	explicit ConstantOperator(double operand);
 	~ConstantOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return result; }
 
 protected:
-	ConstantOperator* clone() const {
+	ConstantOperator* clone() const override {
 		return new ConstantOperator(*this); }
 };
 
@@ -193,11 +194,11 @@ class MinusOperator:public UnaryOperator {
 public:
 	MinusOperator(const std::shared_ptr<ArithmeticOperator>&);
 	~MinusOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return -(operand_handle->Evaluate()); }
 
 protected:
-	MinusOperator* clone() const {
+	MinusOperator* clone() const override {
 		return new MinusOperator(*this); }
 };
 
@@ -206,11 +207,11 @@ class VariableOperator:public UnaryOperator {
 public:
 	VariableOperator(MacroVariableInterface& interface, const std::shared_ptr<ArithmeticOperator>& operand);
 	~VariableOperator() {}
-	double Evaluate();
+	double Evaluate() override;
 	bool WriteVariable(double);
 
 protected:
-	VariableOperator* clone() const {
+	VariableOperator* clone() const override {
 		return new VariableOperator(*this); }
 
 private:
@@ -223,11 +224,11 @@ class SineOperator:public UnaryOperator {
 public:
 	SineOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~SineOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return sin(operand_handle->Evaluate() / 180.0 * std::numbers::pi); }
 
 protected:
-	SineOperator* clone() const {
+	SineOperator* clone() const override {
 		return new SineOperator(*this); }
 };
 
@@ -236,11 +237,11 @@ class CosineOperator:public UnaryOperator {
 public:
 	CosineOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~CosineOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return cos(operand_handle->Evaluate() / 180.0 * std::numbers::pi); }
 
 protected:
-	CosineOperator* clone() const {
+	CosineOperator* clone() const override {
 		return new CosineOperator(*this); }
 };
 
@@ -249,11 +250,11 @@ class TangentOperator :public UnaryOperator {
 public:
 	TangentOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~TangentOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return tan(operand_handle->Evaluate() / 180.0 * std::numbers::pi); }
 
 protected:
-	TangentOperator* clone() const {
+	TangentOperator* clone() const override {
 		return new TangentOperator(*this); }
 };
 
@@ -262,11 +263,11 @@ class ArcSineOperator :public UnaryOperator {
 public:
 	ArcSineOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~ArcSineOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return asin(operand_handle->Evaluate()) / std::numbers::pi * 180.0; }
 
 protected:
-	ArcSineOperator* clone() const {
+	ArcSineOperator* clone() const override {
 		return new ArcSineOperator(*this); }
 };
 
@@ -275,11 +276,11 @@ class ArcCosineOperator :public UnaryOperator {
 public:
 	ArcCosineOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~ArcCosineOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return acos(operand_handle->Evaluate()) / std::numbers::pi * 180.0; }
 
 protected:
-	ArcCosineOperator* clone() const {
+	ArcCosineOperator* clone() const override {
 		return new ArcCosineOperator(*this); }
 };
 
@@ -288,11 +289,11 @@ class ArcTangentOperator :public UnaryOperator {
 public:
 	ArcTangentOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~ArcTangentOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return atan(operand_handle->Evaluate()) / std::numbers::pi * 180.0; }
 
 protected:
-	ArcTangentOperator* clone() const {
+	ArcTangentOperator* clone() const override {
 		return new ArcTangentOperator(*this); }
 };
 
@@ -301,11 +302,11 @@ class SquareRootOperator :public UnaryOperator {
 public:
 	SquareRootOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~SquareRootOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return sqrt(operand_handle->Evaluate()); }
 
 protected:
-	SquareRootOperator* clone() const {
+	SquareRootOperator* clone() const override {
 		return new SquareRootOperator(*this); }
 };
 
@@ -314,11 +315,11 @@ class AbsoluteValueOperator :public UnaryOperator {
 public:
 	AbsoluteValueOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~AbsoluteValueOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return fabs(operand_handle->Evaluate()); }
 
 protected:
-	AbsoluteValueOperator* clone() const {
+	AbsoluteValueOperator* clone() const override {
 		return new AbsoluteValueOperator(*this); }
 };
 
@@ -327,11 +328,11 @@ class RoundOffOperator :public UnaryOperator {
 public:
 	RoundOffOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~RoundOffOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return round(operand_handle->Evaluate()); }
 
 protected:
-	RoundOffOperator* clone() const {
+	RoundOffOperator* clone() const override {
 		return new RoundOffOperator(*this); }
 };
 
@@ -340,10 +341,10 @@ class RoundDownOperator :public UnaryOperator {
 public:
 	RoundDownOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~RoundDownOperator() {}
-	double Evaluate();
+	double Evaluate() override;
 
 protected:
-	RoundDownOperator* clone() const {
+	RoundDownOperator* clone() const override {
 		return new RoundDownOperator(*this); }
 };
 
@@ -352,10 +353,10 @@ class RoundUpOperator :public UnaryOperator {
 public:
 	RoundUpOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~RoundUpOperator() {}
-	double Evaluate();
+	double Evaluate() override;
 
 protected:
-	RoundUpOperator* clone() const {
+	RoundUpOperator* clone() const override {
 		return new RoundUpOperator(*this); }
 };
 
@@ -364,11 +365,11 @@ class NaturalLogOperator :public UnaryOperator {
 public:
 	NaturalLogOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~NaturalLogOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return log(operand_handle->Evaluate()); }
 
 protected:
-	NaturalLogOperator* clone() const {
+	NaturalLogOperator* clone() const override {
 		return new NaturalLogOperator(*this); }
 };
 
@@ -377,11 +378,11 @@ class ExponentOperator :public UnaryOperator {
 public:
 	ExponentOperator(const std::shared_ptr<ArithmeticOperator>& operand);
 	~ExponentOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return exp(operand_handle->Evaluate()); }
 
 protected:
-	ExponentOperator* clone()const {
+	ExponentOperator* clone() const override {
 		return new ExponentOperator(*this); }
 };
 
@@ -390,11 +391,11 @@ class PowerOperator :public BinaryOperator {
 public:
 	PowerOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~PowerOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return pow(left_operand->Evaluate(), right_operand->Evaluate()); }
 
 protected:
-	PowerOperator* clone()const {
+	PowerOperator* clone() const override {
 		return new PowerOperator(*this); }
 };
 
@@ -403,11 +404,11 @@ class ArcTangent2Operator :public BinaryOperator {
 public:
 	ArcTangent2Operator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~ArcTangent2Operator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return atan2(left_operand->Evaluate(), right_operand->Evaluate()) / std::numbers::pi * 180.0; }
 
 protected:
-	ArcTangent2Operator* clone()const {
+	ArcTangent2Operator* clone() const override {
 		return new ArcTangent2Operator(*this); }
 };
 
@@ -416,11 +417,11 @@ class AddOperator :public BinaryOperator {
 public:
 	AddOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~AddOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return left_operand->Evaluate() + right_operand->Evaluate(); }
 
 protected:
-	AddOperator* clone()const {
+	AddOperator* clone() const override {
 		return new AddOperator(*this); }
 };
 
@@ -429,11 +430,11 @@ class SubtractOperator :public BinaryOperator {
 public:
 	SubtractOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~SubtractOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return left_operand->Evaluate() - right_operand->Evaluate(); }
 
 protected:
-	SubtractOperator* clone()const {
+	SubtractOperator* clone() const override {
 		return new SubtractOperator(*this); }
 };
 
@@ -442,11 +443,11 @@ class MultiplyOperator :public BinaryOperator {
 public:
 	MultiplyOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~MultiplyOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return left_operand->Evaluate() * right_operand->Evaluate(); }
 
 protected:
-	MultiplyOperator* clone()const {
+	MultiplyOperator* clone() const override {
 		return new MultiplyOperator(*this); }
 };
 
@@ -455,11 +456,11 @@ class DivideOperator :public BinaryOperator {
 public:
 	DivideOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	~DivideOperator() {}
-	double Evaluate() {
+	double Evaluate() override {
 		return left_operand->Evaluate() / right_operand->Evaluate(); }
 
 protected:
-	DivideOperator* clone()const {
+	DivideOperator* clone() const override {
 		return new DivideOperator(*this); }
 };
 
@@ -469,14 +470,14 @@ public:
 	AssignmentOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<ArithmeticOperator>& right_operand);
 	AssignmentOperator(const std::shared_ptr<ArithmeticOperator>& left_operand, const std::shared_ptr<LogicalOperator>& right_operand);
 	~AssignmentOperator() {}
-	double Evaluate();
+	double Evaluate() override;
 
 private:
 	VariableOperator* left_variable;
 	std::shared_ptr<LogicalOperator> right_logical;
 
 protected:
-	AssignmentOperator* clone() const {
+	AssignmentOperator* clone() const override {
 		return new AssignmentOperator(*this); }
 };
 
@@ -485,10 +486,10 @@ class EqualOperator :public RelationalOperator {
 public:
 	EqualOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~EqualOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	EqualOperator* clone()const {
+	EqualOperator* clone() const override {
 		return new EqualOperator(*this); }
 };
 
@@ -497,10 +498,10 @@ class NotEqualOperator :public RelationalOperator {
 public:
 	NotEqualOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~NotEqualOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	NotEqualOperator* clone()const {
+	NotEqualOperator* clone() const override {
 		return new NotEqualOperator(*this); }
 };
 
@@ -509,10 +510,10 @@ class GreaterOperator :public RelationalOperator {
 public:
 	GreaterOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~GreaterOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	GreaterOperator* clone() const {
+	GreaterOperator* clone() const override {
 		return new GreaterOperator(*this); }
 };
 
@@ -521,10 +522,10 @@ class GreaterEqualOperator :public RelationalOperator {
 public:
 	GreaterEqualOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~GreaterEqualOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	GreaterEqualOperator* clone()const {
+	GreaterEqualOperator* clone() const override {
 		return new GreaterEqualOperator(*this); }
 };
 
@@ -533,10 +534,10 @@ class LessOperator :public RelationalOperator {
 public:
 	LessOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~LessOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	LessOperator* clone()const {
+	LessOperator* clone() const override {
 		return new LessOperator(*this); }
 };
 
@@ -545,10 +546,10 @@ class LessEqualOperator :public RelationalOperator {
 public:
 	LessEqualOperator(const std::shared_ptr<ArithmeticOperator>&, const std::shared_ptr<ArithmeticOperator>&);
 	~LessEqualOperator() {}
-	bool Evaluate();
+	bool Evaluate() override;
 
 protected:
-	LessEqualOperator* clone()const {
+	LessEqualOperator* clone() const override {
 		return new LessEqualOperator(*this); }
 };
 
@@ -565,10 +566,10 @@ public:
 	AND_Operator(const std::shared_ptr<LogicalOperator>&, const std::shared_ptr<RelationalOperator>&);
 	
 	~AND_Operator() {}
-	unsigned Evaluate();
+	unsigned Evaluate() override;
 
 protected:
-	AND_Operator* clone()const {
+	AND_Operator* clone() const override {
 		return new AND_Operator(*this); }
 };
 
@@ -585,10 +586,10 @@ public:
 	OR_Operator(const std::shared_ptr<LogicalOperator>&, const std::shared_ptr<RelationalOperator>&);
 
 	~OR_Operator() {}
-	unsigned Evaluate();
+	unsigned Evaluate() override;
 
 protected:
-	OR_Operator* clone()const {
+	OR_Operator* clone() const override {
 		return new OR_Operator(*this); }
 };
 
@@ -605,10 +606,10 @@ public:
 	XOR_Operator(const std::shared_ptr<LogicalOperator>&, const std::shared_ptr<RelationalOperator>&);
 
 	~XOR_Operator() {}
-	unsigned Evaluate();
+	unsigned Evaluate() override;
 
 protected:
-	XOR_Operator* clone()const {
+	XOR_Operator* clone() const override {
 		return new XOR_Operator(*this); }
 };
 
