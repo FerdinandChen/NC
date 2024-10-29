@@ -6,15 +6,17 @@
 #include <numbers>
 #include <memory>
 
+using namespace std;
+
 int main()
 {
-    std::cout << "Hello World!\n";
     SystemParameter system_parameter;
     MacroVariableInterface  mvi(system_parameter);
-    std::unique_ptr<MacroParserFactory> factory(new FanucMacroParserCreator(mvi));
-    auto parser=factory->CreateParser();
-    std::string block("#1=3.14");
-    std::cout << "command type: " << parser->ParseBlock(block);
+    
+    GeneralParserCreator<FanucMacroParser> factory(mvi);
+    auto parser=factory.CreateParser();
+    string block("#1=SIN[30]");
+    cout << "command type: " << parser->ParseBlock(block) << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

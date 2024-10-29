@@ -13,15 +13,16 @@ public:
 	virtual std::unique_ptr<MacroParser> CreateParser() = 0;
 };
 
-//Fanuc巨集語言解析器產生器
-class FanucMacroParserCreator :public MacroParserFactory {
+//通用巨集語言產生器
+template<typename Type>
+class GeneralParserCreator :public MacroParserFactory {
 public:
-	FanucMacroParserCreator(MacroVariableInterface&);
-	~FanucMacroParserCreator() = default;
+	GeneralParserCreator(MacroVariableInterface& mvi)
+		:macro_variable_interface(mvi){}
+	~GeneralParserCreator() = default;
 
 	std::unique_ptr<MacroParser> CreateParser() override {
-		return std::make_unique<FanucMacroParser>(macro_variable_interface);  }
-
+		return std::make_unique<Type>(macro_variable_interface); }
 private:
 	MacroVariableInterface& macro_variable_interface;
 };
