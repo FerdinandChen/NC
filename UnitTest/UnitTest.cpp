@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "CppUnitTest.h"
 #include "MacroOperator.h"
-#include "MacroParser.h"
+#include "FanucMacroParser.h"
 #include <numbers>
 #include <cmath>
 #include <string>
@@ -70,7 +70,7 @@ namespace UnitTest
 	//剖析並驗證巨集算式
 	static GeneralOperatorHandle AssertMacroExpression(MacroVariableInterface& macro_variable_interface, const string& block)
 	{
-		MacroParser parser(macro_variable_interface);
+		FanucMacroParser parser(macro_variable_interface);
 
 		//剖析NC單節是否為合法巨集算式
 		Assert::AreEqual(CommandType::MACRO_COMMAND, parser.ParseBlock(block));
@@ -1005,7 +1005,7 @@ namespace UnitTest
 			{
 				SystemParameter system_parameter;
 				MacroVariableInterface macro_variable_interface(system_parameter);
-				MacroParser parser(macro_variable_interface);
+				FanucMacroParser parser(macro_variable_interface);
 
 				string block("IF[#1 EQ #2] THEN #1=1");
 				double expected(1.0);
@@ -1022,7 +1022,7 @@ namespace UnitTest
 			{
 				SystemParameter system_parameter;
 				MacroVariableInterface macro_variable_interface(system_parameter);
-				MacroParser parser(macro_variable_interface);
+				FanucMacroParser parser(macro_variable_interface);
 				
 				string block("IF[#1 EQ #2] GOTO 13");
 				int expected(13);
@@ -1039,7 +1039,7 @@ namespace UnitTest
 			{
 				SystemParameter system_parameter;
 				MacroVariableInterface macro_variable_interface(system_parameter);
-				MacroParser parser(macro_variable_interface);
+				FanucMacroParser parser(macro_variable_interface);
 				
 				string block("WHILE[#1 EQ #2] DO 3");
 				unsigned short expected(3);
@@ -1056,7 +1056,7 @@ namespace UnitTest
 			{
 				SystemParameter system_parameter;
 				MacroVariableInterface macro_variable_interface(system_parameter);
-				MacroParser parser(macro_variable_interface);
+				FanucMacroParser parser(macro_variable_interface);
 				
 				string block("END 3");
 				unsigned short expected(3);

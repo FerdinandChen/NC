@@ -338,10 +338,10 @@ public:
 };
 
 //巨集單節剖析器
-class MacroParser {
+class FanucMacroParser {
 public:
-	MacroParser(MacroVariableInterface&);
-	~MacroParser() {}
+	FanucMacroParser(MacroVariableInterface&);
+	~FanucMacroParser() {}
 	//剖析NC碼單節
 	CommandType ParseBlock(const std::string& block);
 	//巨集運算子產生器

@@ -141,7 +141,7 @@
     <ClCompile Include="source\MacroOperator.cpp" />
     <ClCompile Include="source\MacroVariable.cpp" />
     <ClCompile Include="source\NC_NumberDefinition.cpp" />
-    <ClCompile Include="source\MacroParser.cpp" />
+    <ClCompile Include="source\FanucMacroParser.cpp" />
     <ClCompile Include="source\StringConverter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +150,7 @@
     <ClInclude Include="header\MacroOperator.h" />
     <ClInclude Include="header\MacroVariable.h" />
     <ClInclude Include="header\NC_NumberDefinition.h" />
-    <ClInclude Include="header\MacroParser.h" />
+    <ClInclude Include="header\FanucMacroParser.h" />
     <ClInclude Include="header\StringConverter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

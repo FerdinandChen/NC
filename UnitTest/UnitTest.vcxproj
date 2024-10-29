@@ -160,7 +160,7 @@
     <ClCompile Include="..\macro_expression\source\ControllerParameter.cpp" />
     <ClCompile Include="..\macro_expression\source\CoordinateSystem.cpp" />
     <ClCompile Include="..\macro_expression\source\MacroOperator.cpp" />
-    <ClCompile Include="..\macro_expression\source\MacroParser.cpp" />
+    <ClCompile Include="..\macro_expression\source\FanucMacroParser.cpp" />
     <ClCompile Include="..\macro_expression\source\MacroVariable.cpp" />
     <ClCompile Include="..\macro_expression\source\NC_NumberDefinition.cpp" />
     <ClCompile Include="..\macro_expression\source\StringConverter.cpp" />

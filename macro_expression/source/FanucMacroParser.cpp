@@ -1,4 +1,4 @@
-﻿#include "MacroParser.h"
+﻿#include "FanucMacroParser.h"
 #include <cstdlib>
 
 using namespace std;
@@ -2156,12 +2156,12 @@ Argument::Argument()
 {
 }
 
-MacroParser::MacroParser(MacroVariableInterface& variable_interface)
+FanucMacroParser::FanucMacroParser(MacroVariableInterface& variable_interface)
 	:macro_generator(variable_interface)
 {
 }
 
-CommandType MacroParser::ParseBlock(const string& block)
+CommandType FanucMacroParser::ParseBlock(const string& block)
 {
 	//剖析巨集用引數
 	Argument args;
@@ -2325,7 +2325,7 @@ CommandType MacroParser::ParseBlock(const string& block)
 	}
 }
 
-bool MacroParser::CreateAddressOrKeyword(Argument& args)
+bool FanucMacroParser::CreateAddressOrKeyword(Argument& args)
 {
 	//僅有一個大寫字母
 	if (args.iter - args.upper_begin == 1) {
@@ -2348,7 +2348,7 @@ bool MacroParser::CreateAddressOrKeyword(Argument& args)
 	return true;
 }
 
-bool MacroParser::CreateUnaryOrConstantOperator(Argument& args)
+bool FanucMacroParser::CreateUnaryOrConstantOperator(Argument& args)
 {
 	//建立數字字串
 	macro_generator.CreateDigitString(args.digit_begin, args.iter);

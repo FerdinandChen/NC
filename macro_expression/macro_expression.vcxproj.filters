@@ -30,7 +30,7 @@
     <ClCompile Include="source\CoordinateSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\MacroParser.cpp">
+    <ClCompile Include="source\FanucMacroParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\NC_NumberDefinition.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="header\CoordinateSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\MacroParser.h">
+    <ClInclude Include="header\FanucMacroParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\NC_NumberDefinition.h">
