@@ -303,6 +303,7 @@ private:
 	MacroParsingContext context[PRIORITY_NESTING_LEVEL_MAX + 1];
 };
 
+//解析用引數群
 class Argument {
 public:
 	Argument();
@@ -337,6 +338,7 @@ enum CommandType {
 	MACRO_COMMAND,
 };
 
+//巨集語言抽象解析器
 class MacroParser {
 public:
 	MacroParser() = default;
@@ -345,7 +347,7 @@ public:
 	virtual CommandType ParseBlock(const std::string& block) = 0;
 };
 
-//巨集單節剖析器
+//Fanuc巨集語言單節解析器
 class FanucMacroParser:public MacroParser {
 public:
 	FanucMacroParser(MacroVariableInterface&);
