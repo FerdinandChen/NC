@@ -13,7 +13,7 @@ public:
 	virtual std::unique_ptr<MacroParser> CreateParser() = 0;
 };
 
-//通用巨集語言產生器
+//巨集語言解析器之通用產生器
 template<typename Type>
 class GeneralParserCreator :public MacroParserFactory {
 public:
