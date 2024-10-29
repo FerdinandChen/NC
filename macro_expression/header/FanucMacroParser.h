@@ -303,18 +303,6 @@ private:
 	MacroParsingContext context[PRIORITY_NESTING_LEVEL_MAX + 1];
 };
 
-//指令類型
-enum CommandType {
-	//不合法指令
-	INVALID_COMMAND,
-	//不支援指令
-	UNKNOWN_COMMAND,
-	//NC指令
-	NC_COMMAND,
-	//巨集指令
-	MACRO_COMMAND,
-};
-
 class Argument {
 public:
 	Argument();
@@ -337,11 +325,31 @@ public:
 	std::string::const_iterator iter;
 };
 
+//指令類型
+enum CommandType {
+	//不合法指令
+	INVALID_COMMAND,
+	//不支援指令
+	UNKNOWN_COMMAND,
+	//NC指令
+	NC_COMMAND,
+	//巨集指令
+	MACRO_COMMAND,
+};
+
+class MacroParser {
+public:
+	MacroParser() = default;
+	virtual ~MacroParser() = default;
+
+	virtual CommandType ParseBlock(const std::string& block) = 0;
+};
+
 //巨集單節剖析器
-class FanucMacroParser {
+class FanucMacroParser:public MacroParser {
 public:
 	FanucMacroParser(MacroVariableInterface&);
-	~FanucMacroParser() {}
+	~FanucMacroParser() = default;
 	//剖析NC碼單節
 	CommandType ParseBlock(const std::string& block);
 	//巨集運算子產生器

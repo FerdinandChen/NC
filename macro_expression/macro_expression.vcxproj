@@ -139,6 +139,7 @@
     <ClCompile Include="source\ControllerParameter.cpp" />
     <ClCompile Include="source\CoordinateSystem.cpp" />
     <ClCompile Include="source\MacroOperator.cpp" />
+    <ClCompile Include="source\MacroParserFactory.cpp" />
     <ClCompile Include="source\MacroVariable.cpp" />
     <ClCompile Include="source\NC_NumberDefinition.cpp" />
     <ClCompile Include="source\FanucMacroParser.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="header\ControllerParameter.h" />
     <ClInclude Include="header\CoordinateSystem.h" />
     <ClInclude Include="header\MacroOperator.h" />
+    <ClInclude Include="header\MacroParserFactory.h" />
     <ClInclude Include="header\MacroVariable.h" />
     <ClInclude Include="header\NC_NumberDefinition.h" />
     <ClInclude Include="header\FanucMacroParser.h" />
