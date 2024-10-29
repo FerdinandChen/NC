@@ -14,9 +14,13 @@ MacroOperator.h/cpp :
 
 定義巨集運算子，包含算術運算子、關係運算子、邏輯運算子、條件式運算子等幾大類
 
-MacroParser.h/cpp :
+MacroParserFactory.h/cpp :
 
-巨集單節剖析器，解析巨集字串並產生巨集運算子語法樹，供用戶碼執行巨集運算
+運用Factory Method pattern的設計，來建立針對不同品牌控制器的巨集語言解譯器，目前僅支援Fanuc巨集語言。方便將來擴展支援其他控制器如Siemens、Heidenhain等等
+
+FanucMacroParser.h/cpp :
+
+支援Fanuc巨集語言的單節剖析器，解析巨集字串並產生巨集運算子的語法樹，供用戶碼執行巨集運算
 
 ControllerParameter.h/cpp : 控制器參數
 
